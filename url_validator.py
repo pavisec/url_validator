@@ -1,5 +1,7 @@
-from requests import ConnectionError, HTTPError, Timeout, RequestException, Session
+import socket
+import ssl
 
+from requests import ConnectionError, HTTPError, Timeout, RequestException, Session
 from urllib.parse import urlparse
 from colorama import Fore, Style
 
@@ -37,4 +39,21 @@ class URLValidator:
             print(f"{Fore.LIGHTWHITE_EX}An HTTP error has occurred.{Style.RESET_ALL}")
         except RequestException:
             print(f"{Fore.LIGHTWHITE_EX}Something went wrong, try again later.{Style.RESET_ALL}")
+        return False
+    
+    def get_certificate(self):
+        result = urlparse(self.url)
+        hostname = result.hostname
+
+        try:
+            cert = ssl.get_server_certificate((hostname, 443))
+            return bool(cert)
+        except ssl.SSLError:
+            print(f"{Fore.LIGHTWHITE_EX}Unable to establish a secure connection to the website.{Style.RESET_ALL}")
+        except socket.gaierror:
+            print(f"{Fore.LIGHTWHITE_EX}Failed to resolve the hostname. Please check the website URL.{Style.RESET_ALL}")
+        except ConnectionError:
+            print(f"{Fore.LIGHTWHITE_EX}Failed to establish a connection.{Style.RESET_ALL}")
+        except Exception:
+            print(f"{Fore.LIGHTWHITE_EX}An error has occurred while retrieving the certificate.{Style.RESET_ALL}")
         return False
