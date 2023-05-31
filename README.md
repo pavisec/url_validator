@@ -32,6 +32,14 @@ Run the App
   python main.py -u example.com
 ```
 
+## Commands (optional)
+
+Request has timed out?
+
+```bash
+  python main.py -u example.com -t 10
+```
+
 ## Authors
 
 - [@pavisec](https://www.github.com/pavisec)
