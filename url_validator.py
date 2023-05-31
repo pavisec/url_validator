@@ -25,7 +25,7 @@ class URLValidator:
             raise ValueError("Invalid URL")
     
     def website_is_up(self):
-        headers = {"User-agent", USER_AGENT}
+        headers = {"User-agent": USER_AGENT}
 
         try:
             session = Session()
