@@ -1,7 +1,7 @@
 
 # URL Validator
 
-Validate the website URL and check if it has SSL certificate
+Validate the website's URL and check if it has legitimate SSL certificate
 
 
 
