@@ -9,9 +9,10 @@ from config import USER_AGENT
 
 
 class URLValidator:
-    def __init__(self, url, timeout):
+    def __init__(self, url, timeout, show_errors=False):
         self.url = self._validate_url(url)
         self.timeout = timeout
+        self.show_errors = show_errors
 
     @staticmethod
     def _validate_url(url):
@@ -32,13 +33,17 @@ class URLValidator:
             response = session.get(self.url, headers=headers, timeout=self.timeout)
             return response.status_code == 200
         except Timeout:
-            print(f"{Fore.LIGHTWHITE_EX}Request has timed out.{Style.RESET_ALL}")
+            if self.show_errors:
+                print(f"{Fore.LIGHTWHITE_EX}Request has timed out.{Style.RESET_ALL}")
         except ConnectionError:
-            print(f"{Fore.LIGHTWHITE_EX}Failed to establish a connection.{Style.RESET_ALL}")
+            if self.show_errors:
+                print(f"{Fore.LIGHTWHITE_EX}Failed to establish a connection.{Style.RESET_ALL}")
         except HTTPError:
-            print(f"{Fore.LIGHTWHITE_EX}An HTTP error has occurred.{Style.RESET_ALL}")
+            if self.show_errors:
+                print(f"{Fore.LIGHTWHITE_EX}An HTTP error has occurred.{Style.RESET_ALL}")
         except RequestException:
-            print(f"{Fore.LIGHTWHITE_EX}Something went wrong, try again later.{Style.RESET_ALL}")
+            if self.show_errors:
+                print(f"{Fore.LIGHTWHITE_EX}Something went wrong, try again later.{Style.RESET_ALL}")
         return False
     
     def get_certificate(self):
@@ -49,11 +54,15 @@ class URLValidator:
             cert = ssl.get_server_certificate((hostname, 443))
             return bool(cert)
         except ssl.SSLError:
-            print(f"{Fore.LIGHTWHITE_EX}Unable to establish a secure connection to the website.{Style.RESET_ALL}")
+            if self.show_errors:
+             print(f"{Fore.LIGHTWHITE_EX}Unable to establish a secure connection to the website.{Style.RESET_ALL}")
         except socket.gaierror:
-            print(f"{Fore.LIGHTWHITE_EX}Failed to resolve the hostname. Please check the website URL.{Style.RESET_ALL}")
+            if self.show_errors:
+             print(f"{Fore.LIGHTWHITE_EX}Failed to resolve the hostname. Please check the website URL.{Style.RESET_ALL}")
         except ConnectionError:
-            print(f"{Fore.LIGHTWHITE_EX}Failed to establish a connection.{Style.RESET_ALL}")
+            if self.show_errors:
+             print(f"{Fore.LIGHTWHITE_EX}Failed to establish a connection.{Style.RESET_ALL}")
         except Exception:
-            print(f"{Fore.LIGHTWHITE_EX}An error has occurred while retrieving the certificate.{Style.RESET_ALL}")
+            if self.show_errors:
+             print(f"{Fore.LIGHTWHITE_EX}An error has occurred while retrieving the certificate.{Style.RESET_ALL}")
         return False

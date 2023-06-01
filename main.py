@@ -5,8 +5,8 @@ from url_validator import URLValidator
 
 
 def main():
-    url, timeout = parse_arguments()
-    validator = URLValidator(url, timeout)
+    url, timeout, show_errors = parse_arguments()
+    validator = URLValidator(url, timeout, show_errors)
 
     is_website_up = validator.website_is_up()
     has_certificate = validator.get_certificate()
