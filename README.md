@@ -7,9 +7,10 @@ Validate the website's URL and check legitimate SSL certificate
 
 ## Features
 
-- URL Validation
+- Validate the URL
 - Check Valid SSL Certificate
 - Check Website's Status
+- Show Error Messages
 
 
 ## Run Locally
@@ -38,6 +39,12 @@ Request has timed out?
 
 ```bash
   python main.py -u example.com -t 10
+```
+
+Show error messages
+
+```bash
+  python main.py -u example.com --show-errors
 ```
 
 ## Authors
