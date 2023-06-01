@@ -16,14 +16,16 @@ class URLValidator:
 
     @staticmethod
     def _validate_url(url):
-        if not url.startswith(("http://www.", "https://www.")):
-            url = f"https://www.{url}"
-        result = urlparse(url)
+       if not urlparse(url).scheme:
+          url = f"http://{url}"
+       result = urlparse(url)
 
-        if result.scheme and result.netloc:
+       if all([result.scheme, result.netloc]) and result.scheme in ["http", "https"]:
+          netloc_parts = result.netloc.split(".")
+          if len(netloc_parts) == 2 or (len(netloc_parts) > 2 and netloc_parts[0] == "www"): 
             return url
-        else:
-            raise ValueError("Invalid URL")
+       else:
+          raise ValueError("Invalid URL")
     
     def website_is_up(self):
         headers = {"User-agent": USER_AGENT}
