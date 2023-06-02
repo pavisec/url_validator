@@ -1,8 +1,8 @@
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/pavico)
 
 # URL Validator
 
 Validate the website's URL and check legitimate SSL certificate
-
 
 
 ## Features
