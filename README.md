@@ -1,4 +1,4 @@
-[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/pavico)
+<a href="https://www.buymeacoffee.com/pavico" target="_blank"> <img align="center" src="https://cdn.buymeacoffee.com/buttons/v2/default-orange.png" height="50" width="125" alt="aveek.saha" /></a>
 
 # URL Validator
 
