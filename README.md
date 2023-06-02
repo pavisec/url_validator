@@ -11,6 +11,7 @@ Validate the website's URL and check legitimate SSL certificate
 - Check Valid SSL Certificate
 - Check Website's Status
 - Show Error Messages
+- Show Certificate
 
 
 ## Run Locally
@@ -45,6 +46,12 @@ Show error messages
 
 ```bash
   python main.py -u example.com --show-errors
+```
+
+Show certificate (not decoded)
+
+```bash
+  python main.py -u example.com --show-cert
 ```
 
 ## Authors
