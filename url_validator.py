@@ -2,6 +2,7 @@ import socket
 import ssl
 
 from requests import ConnectionError, HTTPError, Timeout, RequestException, Session
+
 from urllib.parse import urlparse
 from colorama import Fore, Style
 from typing import Union
@@ -27,6 +28,11 @@ class URLValidator:
             return url
        else:
           raise ValueError("Invalid URL")
+       
+    
+    def _print_error(self, message: str):
+       if self.show_errors:
+          print(f"{Fore.LIGHTWHITE_EX}{message}{Style.RESET_ALL}")
     
     def website_is_up(self):
         headers = {"User-agent": USER_AGENT}
@@ -36,17 +42,13 @@ class URLValidator:
             response = session.get(self.url, headers=headers, timeout=self.timeout)
             return response.status_code == 200
         except Timeout:
-            if self.show_errors:
-                print(f"{Fore.LIGHTWHITE_EX}Request has timed out.{Style.RESET_ALL}")
+           self._print_error("Request has timed out.")
         except ConnectionError:
-            if self.show_errors:
-                print(f"{Fore.LIGHTWHITE_EX}Failed to establish a connection.{Style.RESET_ALL}")
+            self._print_error("Failed to establish a connection.")
         except HTTPError:
-            if self.show_errors:
-                print(f"{Fore.LIGHTWHITE_EX}An HTTP error has occurred.{Style.RESET_ALL}")
+           self._print_error("An HTTP error has occurred.")
         except RequestException:
-            if self.show_errors:
-                print(f"{Fore.LIGHTWHITE_EX}Something went wrong, try again later.{Style.RESET_ALL}")
+           self._print_error("Something went wrong, try again later.")
         return False
     
     def get_certificate(self):
@@ -57,15 +59,11 @@ class URLValidator:
             cert = ssl.get_server_certificate((hostname, 443))
             return bool(cert)
         except ssl.SSLError:
-            if self.show_errors:
-             print(f"{Fore.LIGHTWHITE_EX}Unable to establish a secure connection to the website.{Style.RESET_ALL}")
+            self._print_error("Unable to establish a secure connection to the website.")
         except socket.gaierror:
-            if self.show_errors:
-             print(f"{Fore.LIGHTWHITE_EX}Failed to resolve the hostname. Please check the website URL.{Style.RESET_ALL}")
+            self._print_error("Failed to resolve the hostname. Please check the website URL.")
         except ConnectionError:
-            if self.show_errors:
-             print(f"{Fore.LIGHTWHITE_EX}Failed to establish a connection.{Style.RESET_ALL}")
+            self._print_error("Failed to establish a connection.")
         except Exception:
-            if self.show_errors:
-             print(f"{Fore.LIGHTWHITE_EX}An error has occurred while retrieving the certificate.{Style.RESET_ALL}")
+            self._print_error("An error has occurred while retrieving the certificate.")
         return False
