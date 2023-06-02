@@ -20,7 +20,7 @@ class URLValidator:
     @staticmethod
     def _validate_url(url):
        if not urlparse(url).scheme:
-          url = f"http://{url}"
+          url = f"https://{url}"
        result = urlparse(url)
 
        if all([result.scheme, result.netloc]) and result.scheme in ["http", "https"]:
