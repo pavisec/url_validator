@@ -4,12 +4,13 @@ import ssl
 from requests import ConnectionError, HTTPError, Timeout, RequestException, Session
 from urllib.parse import urlparse
 from colorama import Fore, Style
+from typing import Union
 
 from config import USER_AGENT
 
 
 class URLValidator:
-    def __init__(self, url, timeout, show_errors=False):
+    def __init__(self, url, timeout: Union[int, float], show_errors=False):
         self.url = self._validate_url(url)
         self.timeout = timeout
         self.show_errors = show_errors
