@@ -7,7 +7,7 @@ Validate the website's URL and check legitimate SSL certificate
 
 ## Features
 
-- Validate the URL
+- Validate the website URL
 - Check Valid SSL Certificate
 - Check Website's Status
 - Show Error Messages
