@@ -13,6 +13,9 @@ Validate the website's URL and check legitimate SSL certificate
 - Show Error Messages
 - Show Certificate
 
+## Upcoming Updates
+- Custom User Agent
+- Certificate Validation
 
 ## Run Locally
 
