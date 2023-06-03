@@ -35,7 +35,7 @@ class URLValidator:
           if len(netloc_parts) == 2 or (len(netloc_parts) > 2 and netloc_parts[0] == "www"): 
             return url
        else:
-          # Raise an execption is the URL is invalid
+          # Raise an exception is the URL is invalid
           raise ValueError("Invalid URL")
     
     # Print error messages if show_errors flag is True
