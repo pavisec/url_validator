@@ -1,4 +1,4 @@
-<a href="https://www.buymeacoffee.com/pavico" target="_blank"> <img align="center" src="https://cdn.buymeacoffee.com/buttons/v2/default-orange.png" height="50" width="125" alt="aveek.saha" /></a>
+<a href="https://www.buymeacoffee.com/pavico" target="_blank"> <img align="center" src="https://cdn.buymeacoffee.com/buttons/v2/default-orange.png" height="40" width="115" alt="aveek.saha" /></a>
 
 # URL Validator
 
