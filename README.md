@@ -17,6 +17,7 @@ Validate the website's URL and check legitimate SSL certificate
 - Custom User Agent
 - Certificate Validation
 - Certificate Decoder
+- User Interface Update
 
 ## Run Locally
 
