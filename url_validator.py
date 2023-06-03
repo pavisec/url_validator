@@ -23,7 +23,7 @@ class URLValidator:
 
     # Method to validate URL
     @staticmethod
-    # Check if the scehem is present in the URL, if not prepend "https://"
+    # Check if the scheme is present in the URL, if not prepend "https://"
     def _validate_url(url):
        if not urlparse(url).scheme:
           url = f"https://{url}"
